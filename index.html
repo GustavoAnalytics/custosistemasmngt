@@ -2,100 +2,494 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel Corporativo de Custos com Sistemas</title>
 <style>
-:root{--red:#b50918;--darkred:#76000b;--black:#151515;--gray:#666b73;--light:#f3f4f6;--line:#dfe2e7;--white:#fff;--amber:#b45309;--shadow:0 12px 30px rgba(18,18,18,.08)}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--black);background:radial-gradient(circle at 95% 1%,rgba(181,9,24,.12),transparent 28rem),linear-gradient(#fff,#f4f5f7)}
-.shell{max-width:1550px;margin:auto;padding:26px}.hero{padding:36px 40px;border-radius:28px;color:#fff;background:linear-gradient(125deg,#090909,#292929 65%,#76000b);box-shadow:var(--shadow)}
-.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.18em;color:#f3a0a8;font-weight:900}h1{font-size:clamp(2rem,4vw,3.5rem);margin:10px 0 12px}.hero p{max-width:950px;color:#d7d7d7;line-height:1.6}
-.filters{margin:22px 0;display:grid;grid-template-columns:repeat(5,minmax(160px,1fr)) auto auto;gap:11px;align-items:end;background:#fff;border-radius:18px;padding:16px;box-shadow:var(--shadow)}
-.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);font-weight:900}
-select,input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;outline:none}.btn{border:0;border-radius:12px;padding:12px 15px;font-weight:850;cursor:pointer;background:var(--black);color:#fff}.btn.secondary{background:#fff;color:var(--black);border:1px solid var(--line)}
-.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.kpi{position:relative;overflow:hidden;background:#fff;border:1px solid #eceef1;border-radius:18px;padding:18px;box-shadow:var(--shadow)}.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--red)}
-.kpi small{font-size:.7rem;text-transform:uppercase;color:var(--gray);font-weight:900}.kpi strong{display:block;font-size:1.7rem;margin:10px 0 5px}.kpi span{font-size:.78rem;color:var(--gray)}
-.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:18px}.card{background:#fff;border:1px solid #eceef1;border-radius:20px;padding:22px;box-shadow:var(--shadow)}.card h2,.section-head h2{margin:0 0 6px;font-size:1.08rem}.card p,.section-head p{margin:0;color:var(--gray);font-size:.86rem}
-.chart{height:340px;position:relative}canvas{width:100%!important;height:100%!important}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:26px 2px 14px}
-.pill,.tag{display:inline-flex;padding:5px 9px;border-radius:999px;background:var(--light);font-size:.74rem;font-weight:800}.systems{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.system{position:relative;overflow:hidden;background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:19px;box-shadow:var(--shadow)}.system:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--red),var(--darkred))}
-.system-top{display:flex;justify-content:space-between;gap:12px}.segment{font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--red);font-weight:900}.system h3{margin:5px 0;font-size:1.05rem}.amount{text-align:right;font-weight:900;white-space:nowrap}.amount small{display:block;font-size:.64rem;color:var(--gray);text-transform:uppercase}.pending{color:var(--amber);white-space:normal}
-.purpose{font-size:.86rem;line-height:1.5;color:#41454b}.label{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);font-weight:900;margin-top:10px}.detail{font-size:.8rem;color:#52565d;line-height:1.45;margin:4px 0}.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.meta-box{background:#f7f7f8;border-radius:10px;padding:9px}.meta-box b{display:block;font-size:.64rem;text-transform:uppercase;color:var(--gray);margin-bottom:4px}.meta-box span{font-size:.78rem}
-.table-card{margin-top:18px}.table-wrap{overflow:auto;border:1px solid #e8eaee;border-radius:14px}table{width:100%;border-collapse:collapse;min-width:1550px}th,td{padding:13px 14px;border-bottom:1px solid #eceef1;text-align:left;vertical-align:top}th{position:sticky;top:0;background:var(--black);color:#fff;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em}td.money,th.money{text-align:right;white-space:nowrap}.purpose-cell{max-width:370px;font-size:.8rem;line-height:1.45;color:#52565d}.pending-text{color:var(--amber);font-weight:900}
-.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:16px}.insight{border-left:4px solid var(--red);background:#fff6f7;padding:14px;border-radius:4px 12px 12px 4px}.insight b{display:block;margin-bottom:5px}.insight span{font-size:.84rem;color:var(--gray);line-height:1.45}.empty{display:none;padding:40px;text-align:center;color:var(--gray)}
+:root{
+  --red:#b50918;--dark-red:#76000b;--black:#151515;--gray:#666b73;
+  --light:#f3f4f6;--line:#dfe2e7;--white:#fff;--amber:#b45309;
+  --shadow:0 12px 30px rgba(18,18,18,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--black);
+  background:radial-gradient(circle at 95% 1%,rgba(181,9,24,.12),transparent 28rem),
+             linear-gradient(#fff,#f4f5f7)
+}
+button,select,input{font:inherit}
+.shell{max-width:1550px;margin:auto;padding:26px}
+.hero{
+  padding:36px 40px;border-radius:28px;color:#fff;
+  background:linear-gradient(125deg,#090909,#292929 65%,#76000b);
+  box-shadow:var(--shadow)
+}
+.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.18em;color:#f3a0a8;font-weight:900}
+h1{font-size:clamp(2rem,4vw,3.5rem);margin:10px 0 12px}
+.hero p{max-width:980px;color:#d7d7d7;line-height:1.6}
+.filters{
+  margin:22px 0;display:grid;grid-template-columns:repeat(6,minmax(150px,1fr)) auto auto;
+  gap:11px;align-items:end;background:#fff;border-radius:18px;padding:16px;box-shadow:var(--shadow)
+}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);font-weight:900}
+select,input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;outline:none}
+select:focus,input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(181,9,24,.1)}
+.btn{border:0;border-radius:12px;padding:12px 15px;font-weight:850;cursor:pointer;background:var(--black);color:#fff}
+.btn:hover{background:var(--red)}
+.btn.secondary{background:#fff;color:var(--black);border:1px solid var(--line)}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.kpi{
+  position:relative;overflow:hidden;background:#fff;border:1px solid #eceef1;
+  border-radius:18px;padding:18px;box-shadow:var(--shadow)
+}
+.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--red)}
+.kpi small{font-size:.7rem;text-transform:uppercase;color:var(--gray);font-weight:900}
+.kpi strong{display:block;font-size:1.65rem;margin:10px 0 5px}
+.kpi span{font-size:.78rem;color:var(--gray)}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:18px}
+.card{background:#fff;border:1px solid #eceef1;border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+.card h2,.section-head h2{margin:0 0 6px;font-size:1.08rem}
+.card p,.section-head p{margin:0;color:var(--gray);font-size:.86rem}
+.chart{height:340px;position:relative}
+canvas{width:100%!important;height:100%!important}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:26px 2px 14px}
+.pill,.tag{display:inline-flex;padding:5px 9px;border-radius:999px;background:var(--light);font-size:.74rem;font-weight:800}
+.systems{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.system{
+  position:relative;overflow:hidden;background:#fff;border:1px solid #e5e7eb;
+  border-radius:18px;padding:19px;box-shadow:var(--shadow)
+}
+.system:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--red),var(--dark-red))}
+.system-top{display:flex;justify-content:space-between;gap:12px}
+.segment{font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--red);font-weight:900}
+.system h3{margin:5px 0;font-size:1.05rem}
+.amount{text-align:right;font-weight:900;white-space:nowrap}
+.amount small{display:block;font-size:.64rem;color:var(--gray);text-transform:uppercase}
+.pending{color:var(--amber);white-space:normal}
+.purpose{font-size:.86rem;line-height:1.5;color:#41454b}
+.label{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);font-weight:900;margin-top:10px}
+.detail{font-size:.8rem;color:#52565d;line-height:1.45;margin:4px 0}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.meta-box{background:#f7f7f8;border-radius:10px;padding:9px}
+.meta-box b{display:block;font-size:.64rem;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
+.meta-box span{font-size:.78rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.table-card{margin-top:18px}
+.table-wrap{overflow:auto;border:1px solid #e8eaee;border-radius:14px}
+table{width:100%;border-collapse:collapse;min-width:1570px}
+th,td{padding:13px 14px;border-bottom:1px solid #eceef1;text-align:left;vertical-align:top}
+th{position:sticky;top:0;background:var(--black);color:#fff;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em}
+td.money,th.money{text-align:right;white-space:nowrap}
+.purpose-cell{max-width:380px;font-size:.8rem;line-height:1.45;color:#52565d}
+.pending-text{color:var(--amber);font-weight:900}
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:16px}
+.insight{border-left:4px solid var(--red);background:#fff6f7;padding:14px;border-radius:4px 12px 12px 4px}
+.insight b{display:block;margin-bottom:5px}
+.insight span{font-size:.84rem;color:var(--gray);line-height:1.45}
+.empty{display:none;padding:40px;text-align:center;color:var(--gray)}
 footer{display:flex;justify-content:space-between;gap:10px;padding:28px 4px 8px;color:var(--gray);font-size:.8rem}
-@media(max-width:1250px){.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.systems{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:850px){.grid{grid-template-columns:1fr}.filters{grid-template-columns:repeat(2,1fr)}.insights{grid-template-columns:1fr}}
-@media(max-width:620px){.shell{padding:12px}.hero{padding:28px 22px}.filters,.kpis,.systems{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.meta{grid-template-columns:1fr}}
+@media(max-width:1300px){
+  .filters{grid-template-columns:repeat(3,1fr)}
+  .kpis{grid-template-columns:repeat(3,1fr)}
+  .systems{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:850px){
+  .grid{grid-template-columns:1fr}
+  .filters{grid-template-columns:repeat(2,1fr)}
+  .insights{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .shell{padding:12px}.hero{padding:28px 22px}
+  .filters,.kpis,.systems{grid-template-columns:1fr}
+  .section-head{align-items:flex-start;flex-direction:column}
+  .meta{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff}.shell{max-width:none;padding:0}
+  .filters,.btn{display:none!important}.card,.kpi,.system,.hero{box-shadow:none;break-inside:avoid}
+}
 </style>
 </head>
 <body>
 <main class="shell">
-<section class="hero"><div class="eyebrow">Grupo MNGT • Gestão Corporativa</div><h1>Painel de Custos e Sistemas</h1><p>Visão consolidada dos investimentos em tecnologia, com empresa responsável, segmento, contexto, meio de pagamento, finalidade e processos atendidos.</p></section>
+  <section class="hero">
+    <div class="eyebrow">Grupo MNGT • Gestão Corporativa</div>
+    <h1>Painel de Custos e Sistemas</h1>
+    <p>Visão consolidada dos investimentos em tecnologia, com empresa responsável, segmento, contexto, meio de pagamento, finalidade e processos atendidos.</p>
+  </section>
 
-<section class="filters">
-<div class="field"><label>Empresa</label><select id="company"><option value="">Todas</option></select></div>
-<div class="field"><label>Sistema</label><select id="system"><option value="">Todos</option></select></div>
-<div class="field"><label>Segmento</label><select id="segment"><option value="">Todos</option></select></div>
-<div class="field"><label>Contexto</label><select id="context"><option value="">Todos</option></select></div>
-<div class="field"><label>Meio de pagamento</label><select id="payment"><option value="">Todos</option></select></div>
-<div class="field"><label>Pesquisa</label><input id="search" placeholder="Pesquisar..."></div>
-<button class="btn secondary" id="clear">Limpar</button><button class="btn" id="csv">Exportar CSV</button>
-</section>
+  <section class="filters">
+    <div class="field"><label>Empresa</label><select id="company"><option value="">Todas</option></select></div>
+    <div class="field"><label>Sistema</label><select id="system"><option value="">Todos</option></select></div>
+    <div class="field"><label>Segmento</label><select id="segment"><option value="">Todos</option></select></div>
+    <div class="field"><label>Contexto</label><select id="context"><option value="">Todos</option></select></div>
+    <div class="field"><label>Meio de pagamento</label><select id="payment"><option value="">Todos</option></select></div>
+    <div class="field"><label>Pesquisa</label><input id="search" placeholder="Pesquisar sistema, processo ou empresa..."></div>
+    <button class="btn secondary" id="clear">Limpar</button>
+    <button class="btn" id="csv">Exportar CSV</button>
+  </section>
 
-<section class="kpis">
-<article class="kpi"><small>Custo mensal</small><strong id="monthly">—</strong><span>Somente valores informados</span></article>
-<article class="kpi"><small>Projeção anual</small><strong id="annual">—</strong><span>Mensal × 12</span></article>
-<article class="kpi"><small>Empresas</small><strong id="companies">—</strong><span>Com sistemas cadastrados</span></article>
-<article class="kpi"><small>Sistemas</small><strong id="systems">—</strong><span>Soluções distintas</span></article>
-<article class="kpi"><small>Valores pendentes</small><strong id="pending">—</strong><span>Sem custo mensal informado</span></article>
-<article class="kpi"><small>Maior custo</small><strong id="largest">—</strong><span id="largestName">—</span></article>
-</section>
+  <section class="kpis">
+    <article class="kpi"><small>Custo mensal</small><strong id="monthly">—</strong><span>Somente valores informados</span></article>
+    <article class="kpi"><small>Projeção anual</small><strong id="annual">—</strong><span>Mensal × 12</span></article>
+    <article class="kpi"><small>Empresas</small><strong id="companies">—</strong><span>Com sistemas cadastrados</span></article>
+    <article class="kpi"><small>Sistemas</small><strong id="systems">—</strong><span>Soluções distintas</span></article>
+    <article class="kpi"><small>Valores pendentes</small><strong id="pending">—</strong><span>Sem custo mensal informado</span></article>
+    <article class="kpi"><small>Maior custo</small><strong id="largest">—</strong><span id="largestName">—</span></article>
+  </section>
 
-<section class="grid">
-<article class="card"><h2>Custo mensal por empresa</h2><p>Comparativo dos valores informados.</p><div class="chart"><canvas id="companyChart"></canvas></div></article>
-<article class="card"><h2>Custo mensal por sistema</h2><p>Participação das plataformas no custo consolidado.</p><div class="chart"><canvas id="systemChart"></canvas></div></article>
-</section>
+  <section class="grid">
+    <article class="card">
+      <h2>Custo mensal por empresa</h2>
+      <p>Comparativo dos valores informados.</p>
+      <div class="chart"><canvas id="companyChart"></canvas></div>
+    </article>
+    <article class="card">
+      <h2>Custo mensal por sistema</h2>
+      <p>Participação das plataformas no custo consolidado.</p>
+      <div class="chart"><canvas id="systemChart"></canvas></div>
+    </article>
+  </section>
 
-<div class="section-head"><div><h2>Catálogo corporativo dos sistemas</h2><p>Finalidade, processos, contexto, pagamento e custo mensal.</p></div><span class="pill" id="systemCount">0 sistemas</span></div>
-<section class="systems" id="cards"></section>
+  <div class="section-head">
+    <div>
+      <h2>Catálogo corporativo dos sistemas</h2>
+      <p>Finalidade, processos, empresa, contexto, pagamento e custo mensal.</p>
+    </div>
+    <span class="pill" id="systemCount">0 sistemas</span>
+  </div>
 
-<section class="card table-card">
-<div class="section-head"><div><h2>Detalhamento dos contratos</h2><p>Registros consolidados sem repetição dos sistemas já existentes.</p></div><span class="pill" id="rowCount">0 registros</span></div>
-<div class="table-wrap"><table><thead><tr><th>Empresa</th><th>Sistema</th><th>Segmento</th><th>Contexto</th><th>Pagamento</th><th>O que faz</th><th class="money">Valor mensal</th><th class="money">Valor anual</th></tr></thead><tbody id="tbody"></tbody></table><div class="empty" id="empty">Nenhum registro encontrado.</div></div>
-<div class="insights" id="insights"></div>
-</section>
-<footer><span>Material corporativo para acompanhamento gerencial de tecnologia.</span><span id="updated"></span></footer>
+  <section class="systems" id="cards"></section>
+
+  <section class="card table-card">
+    <div class="section-head">
+      <div>
+        <h2>Detalhamento dos contratos</h2>
+        <p>Registros consolidados, incluindo os itens vinculados ao Grupo MNGT.</p>
+      </div>
+      <span class="pill" id="rowCount">0 registros</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>Sistema</th>
+            <th>Segmento</th>
+            <th>Contexto</th>
+            <th>Pagamento</th>
+            <th>O que faz</th>
+            <th class="money">Valor mensal</th>
+            <th class="money">Valor anual</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="empty" id="empty">Nenhum registro encontrado.</div>
+    </div>
+
+    <div class="insights" id="insights"></div>
+  </section>
+
+  <footer>
+    <span>Material corporativo para acompanhamento gerencial de tecnologia.</span>
+    <span id="updated"></span>
+  </footer>
 </main>
 
 <script>
-const DATA=[{"empresa": "Área Incrível", "sistema": "Sienge Prevision", "valor": 2991.66, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "Planejamento e Controle de Obras", "categoria": "Planejamento de obras", "finalidade": "Planeja e acompanha cronogramas, restrições, medições, avanço físico e previsibilidade das obras.", "processos": "EAP; cronograma; Linha de Balanço; Curva S; restrições; medições e indicadores."}, {"empresa": "Área Incrível", "sistema": "Sienge", "valor": 6375.41, "contexto": "Corporativo", "pagamento": "Sienge", "observacao": "Registro existente; não duplicado.", "segmento": "ERP para Construção Civil", "categoria": "ERP da construção civil", "finalidade": "Integra engenharia, suprimentos, contratos, medições, financeiro, fiscal, comercial e gestão das obras.", "processos": "Orçamento; compras; contratos; medições; financeiro; fiscal; vendas e incorporação."}, {"empresa": "Área Incrível", "sistema": "OnSafety", "valor": 446.01, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "Saúde e Segurança do Trabalho", "categoria": "Gestão de SST", "finalidade": "Digitaliza a gestão de saúde e segurança, centralizando inspeções, evidências e controles dos trabalhadores.", "processos": "EPI; inspeções; treinamentos; exames; SST/eSocial; relatórios e indicadores."}, {"empresa": "Área Incrível", "sistema": "Mobuss", "valor": 155.0, "contexto": "Corporativo", "pagamento": "Sienge", "observacao": "Registro existente; não duplicado.", "segmento": "Gestão de Obras, Canteiro e Pós-obra", "categoria": "Gestão de campo", "finalidade": "Registra e monitora informações do canteiro, conectando as equipes de campo e escritório.", "processos": "Diário de obra; FVS; qualidade; documentos; segurança; entrega e assistência técnica."}, {"empresa": "Área Incrível", "sistema": "Omie", "valor": 2044.24, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "ERP Financeiro, Fiscal e Administrativo", "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza rotinas administrativas, comerciais, financeiras e fiscais das empresas.", "processos": "Financeiro; vendas; notas fiscais; compras; estoque; serviços; CRM e conciliação."}, {"empresa": "Área Incrível", "sistema": "Nuvinc", "valor": 2998.45, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "Gestão de Empreendimentos Imobiliários", "categoria": "Desenvolvimento imobiliário", "finalidade": "Acompanha o ciclo dos empreendimentos, concentrando viabilidade, legalização, cronogramas e pendências.", "processos": "Viabilidade; mapas; cronogramas; tarefas; dashboards; checklists e KMZ."}, {"empresa": "Rio Claro", "sistema": "UNO ERP", "valor": 1781.27, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "ERP Empresarial e Gestão Logística", "categoria": "ERP empresarial customizável", "finalidade": "Integra processos administrativos, financeiros, fiscais, comerciais, operacionais e logísticos.", "processos": "Cadastros; compras; estoque; produção; vendas; financeiro; fiscal e integrações."}, {"empresa": "M2Log", "sistema": "UNO ERP", "valor": 1256.36, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "ERP Empresarial e Gestão Logística", "categoria": "ERP empresarial customizável", "finalidade": "Integra processos administrativos, financeiros, fiscais, comerciais, operacionais e logísticos.", "processos": "Cadastros; compras; estoque; produção; vendas; financeiro; fiscal e integrações."}, {"empresa": "M2Log", "sistema": "Omie", "valor": 168.42, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "ERP Financeiro, Fiscal e Administrativo", "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza rotinas administrativas, comerciais, financeiras e fiscais das empresas.", "processos": "Financeiro; vendas; notas fiscais; compras; estoque; serviços; CRM e conciliação."}, {"empresa": "Grupo MNGT", "sistema": "UNO ERP", "valor": 180.6, "contexto": "Corporativo", "pagamento": "Sankhya", "observacao": "Corresponde ao WMS UNO; não duplicado.", "segmento": "ERP Empresarial e Gestão Logística", "categoria": "ERP empresarial customizável", "finalidade": "Integra processos administrativos, financeiros, fiscais, comerciais, operacionais e logísticos.", "processos": "Cadastros; compras; estoque; produção; vendas; financeiro; fiscal e integrações."}, {"empresa": "Grupo MNGT", "sistema": "Omie", "valor": 168.42, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "ERP Financeiro, Fiscal e Administrativo", "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza rotinas administrativas, comerciais, financeiras e fiscais das empresas.", "processos": "Financeiro; vendas; notas fiscais; compras; estoque; serviços; CRM e conciliação."}, {"empresa": "A10", "sistema": "UNO ERP", "valor": 393.2, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "ERP Empresarial e Gestão Logística", "categoria": "ERP empresarial customizável", "finalidade": "Integra processos administrativos, financeiros, fiscais, comerciais, operacionais e logísticos.", "processos": "Cadastros; compras; estoque; produção; vendas; financeiro; fiscal e integrações."}, {"empresa": "A10", "sistema": "Omie", "valor": 168.42, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "ERP Financeiro, Fiscal e Administrativo", "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza rotinas administrativas, comerciais, financeiras e fiscais das empresas.", "processos": "Financeiro; vendas; notas fiscais; compras; estoque; serviços; CRM e conciliação."}, {"empresa": "Centro Logístico", "sistema": "UNO ERP", "valor": 1781.27, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "ERP Empresarial e Gestão Logística", "categoria": "ERP empresarial customizável", "finalidade": "Integra processos administrativos, financeiros, fiscais, comerciais, operacionais e logísticos.", "processos": "Cadastros; compras; estoque; produção; vendas; financeiro; fiscal e integrações."}, {"empresa": "Centro Logístico", "sistema": "Omie", "valor": 168.42, "contexto": "Não informado", "pagamento": "Não informado", "observacao": "", "segmento": "ERP Financeiro, Fiscal e Administrativo", "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza rotinas administrativas, comerciais, financeiras e fiscais das empresas.", "processos": "Financeiro; vendas; notas fiscais; compras; estoque; serviços; CRM e conciliação."}, {"empresa": "Grupo MNGT", "sistema": "Google", "valor": 11483.61, "contexto": "Escritório", "pagamento": "Cartão de Crédito", "observacao": "", "segmento": "Produtividade e Colaboração Corporativa", "categoria": "Suíte de trabalho em nuvem", "finalidade": "Disponibiliza comunicação, armazenamento e ferramentas colaborativas para as equipes do grupo.", "processos": "E-mail; Drive; documentos; planilhas; apresentações; reuniões; agenda e arquivos."}, {"empresa": "Grupo MNGT", "sistema": "Sankhya", "valor": 8589.77, "contexto": "Corporativo", "pagamento": "Sankhya", "observacao": "", "segmento": "ERP Corporativo e Gestão Empresarial", "categoria": "ERP de gestão integrada", "finalidade": "Centraliza e conecta os processos administrativos, financeiros, fiscais, comerciais e operacionais.", "processos": "Compras; financeiro; fiscal; contabilidade; vendas; estoque; contratos e controladoria."}, {"empresa": "Grupo MNGT", "sistema": "WMS Senior", "valor": null, "contexto": "Corporativo", "pagamento": "Sankhya", "observacao": "Valor mensal ainda não informado.", "segmento": "Gestão de Armazéns e Logística", "categoria": "WMS — Warehouse Management System", "finalidade": "Controla a operação do armazém desde o recebimento até a armazenagem, separação e expedição.", "processos": "Portaria; recebimento; conferência; endereçamento; inventário; separação e expedição."}, {"empresa": "Grupo MNGT", "sistema": "OpenRouter", "valor": 25.0, "contexto": "Desenvolvimento", "pagamento": "Cartão de Crédito", "observacao": "Referência: US$ 5,00.", "segmento": "Infraestrutura e Integração de Inteligência Artificial", "categoria": "Gateway de modelos de IA", "finalidade": "Centraliza o acesso por API a diferentes modelos de inteligência artificial para aplicações e automações.", "processos": "APIs de IA; seleção de modelos; roteamento; testes; consumo e integrações."}, {"empresa": "Grupo MNGT", "sistema": "OVH Cloud", "valor": 993.92, "contexto": "Desenvolvimento", "pagamento": "Cartão de Crédito", "observacao": "Referência: € 169,90.", "segmento": "Infraestrutura em Nuvem e Hospedagem", "categoria": "Cloud computing e servidores", "finalidade": "Fornece infraestrutura em nuvem para hospedagem de aplicações, bancos de dados e ambientes de desenvolvimento.", "processos": "Servidores; hospedagem; redes; armazenamento; backups e bancos de dados."}, {"empresa": "Grupo MNGT", "sistema": "Claude – Anthropic", "valor": 660.2, "contexto": "Desenvolvimento", "pagamento": "Cartão de Crédito", "observacao": "Referência: US$ 125,00.", "segmento": "Inteligência Artificial Generativa", "categoria": "Assistente e plataforma de IA", "finalidade": "Apoia análise, redação, programação, documentação e automação com inteligência artificial generativa.", "processos": "Documentos; conteúdo; programação; pesquisa; documentação e apoio à decisão."}];
+const DATA=[{"empresa": "Área Incrível", "sistema": "Sienge Prevision", "valor": 2991.66, "contexto": "Planejamento", "pagamento": "Sienge", "observacao": "", "segmento": "Planejamento e Controle de Obras", "categoria": "Planejamento de obras", "finalidade": "Planeja e acompanha cronogramas, restrições, medições, avanço físico e previsibilidade das obras.", "processos": "EAP; cronograma; Linha de Balanço; Curva S; gestão de restrições; medições e indicadores."}, {"empresa": "Área Incrível", "sistema": "Sienge", "valor": 6375.41, "contexto": "Corporativo", "pagamento": "Sienge", "observacao": "", "segmento": "ERP para Construção Civil", "categoria": "ERP da construção civil", "finalidade": "Integra engenharia, suprimentos, contratos, medições, financeiro, fiscal, comercial e gestão das obras.", "processos": "Orçamento; compras; contratos; medições; financeiro; fiscal; vendas; incorporação e pós-obra."}, {"empresa": "Área Incrível", "sistema": "OnSafety", "valor": 446.01, "contexto": "Corporativo", "pagamento": "Cartão de Crédito", "observacao": "", "segmento": "Saúde e Segurança do Trabalho", "categoria": "Gestão de SST", "finalidade": "Digitaliza a gestão de saúde e segurança, centralizando inspeções, evidências e controles dos trabalhadores.", "processos": "EPI; inspeções; treinamentos; exames; SST/eSocial; relatórios e indicadores."}, {"empresa": "Área Incrível", "sistema": "Mobuss", "valor": 155.0, "contexto": "Corporativo", "pagamento": "Sienge", "observacao": "", "segmento": "Gestão de Obras, Canteiro e Pós-obra", "categoria": "Gestão de campo", "finalidade": "Registra e monitora informações do canteiro, conectando as equipes de campo e escritório.", "processos": "Diário de obra; FVS; qualidade; documentos; segurança; entrega e assistência técnica."}, {"empresa": "Área Incrível", "sistema": "Omie", "valor": 2044.24, "contexto": "Corporativo", "pagamento": "Omie", "observacao": "", "segmento": "ERP Financeiro, Fiscal e Administrativo", "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza rotinas administrativas, comerciais, financeiras e fiscais das empresas.", "processos": "Financeiro; vendas; notas fiscais; compras; estoque; serviços; CRM e conciliação bancária."}, {"empresa": "Área Incrível", "sistema": "Nuvinc", "valor": 2998.45, "contexto": "Empreendimentos", "pagamento": "Cartão de Crédito", "observacao": "", "segmento": "Gestão de Empreendimentos Imobiliários", "categoria": "Desenvolvimento imobiliário", "finalidade": "Acompanha o ciclo dos empreendimentos, concentrando viabilidade, legalização, cronogramas e pendências.", "processos": "Viabilidade; mapas; cronogramas; tarefas; dashboards; checklists e arquivos KMZ."}, {"empresa": "Rio Claro", "sistema": "UNO ERP", "valor": 1781.27, "contexto": "Corporativo", "pagamento": "Sankhya", "observacao": "", "segmento": "ERP Empresarial e Gestão Logística", "categoria": "ERP empresarial customizável", "finalidade": "Integra processos administrativos, financeiros, fiscais, comerciais, operacionais e logísticos.", "processos": "Cadastros; compras; estoque; produção; vendas; financeiro; fiscal; serviços e integrações."}, {"empresa": "M2Log", "sistema": "UNO ERP", "valor": 1256.36, "contexto": "Corporativo", "pagamento": "Sankhya", "observacao": "", "segmento": "ERP Empresarial e Gestão Logística", "categoria": "ERP empresarial customizável", "finalidade": "Integra processos administrativos, financeiros, fiscais, comerciais, operacionais e logísticos.", "processos": "Cadastros; compras; estoque; produção; vendas; financeiro; fiscal; serviços e integrações."}, {"empresa": "M2Log", "sistema": "Omie", "valor": 168.42, "contexto": "Corporativo", "pagamento": "Omie", "observacao": "", "segmento": "ERP Financeiro, Fiscal e Administrativo", "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza rotinas administrativas, comerciais, financeiras e fiscais das empresas.", "processos": "Financeiro; vendas; notas fiscais; compras; estoque; serviços; CRM e conciliação bancária."}, {"empresa": "Grupo MNGT", "sistema": "UNO ERP", "valor": 180.6, "contexto": "Corporativo", "pagamento": "Sankhya", "observacao": "Corresponde ao WMS UNO informado anteriormente.", "segmento": "ERP Empresarial e Gestão Logística", "categoria": "ERP empresarial customizável", "finalidade": "Integra processos administrativos, financeiros, fiscais, comerciais, operacionais e logísticos.", "processos": "Cadastros; compras; estoque; produção; vendas; financeiro; fiscal; serviços e integrações."}, {"empresa": "Grupo MNGT", "sistema": "Omie", "valor": 168.42, "contexto": "Corporativo", "pagamento": "Omie", "observacao": "", "segmento": "ERP Financeiro, Fiscal e Administrativo", "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza rotinas administrativas, comerciais, financeiras e fiscais das empresas.", "processos": "Financeiro; vendas; notas fiscais; compras; estoque; serviços; CRM e conciliação bancária."}, {"empresa": "A10", "sistema": "UNO ERP", "valor": 393.2, "contexto": "Corporativo", "pagamento": "Sankhya", "observacao": "", "segmento": "ERP Empresarial e Gestão Logística", "categoria": "ERP empresarial customizável", "finalidade": "Integra processos administrativos, financeiros, fiscais, comerciais, operacionais e logísticos.", "processos": "Cadastros; compras; estoque; produção; vendas; financeiro; fiscal; serviços e integrações."}, {"empresa": "A10", "sistema": "Omie", "valor": 168.42, "contexto": "Corporativo", "pagamento": "Omie", "observacao": "", "segmento": "ERP Financeiro, Fiscal e Administrativo", "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza rotinas administrativas, comerciais, financeiras e fiscais das empresas.", "processos": "Financeiro; vendas; notas fiscais; compras; estoque; serviços; CRM e conciliação bancária."}, {"empresa": "Centro Logístico", "sistema": "UNO ERP", "valor": 1781.27, "contexto": "Corporativo", "pagamento": "Sankhya", "observacao": "", "segmento": "ERP Empresarial e Gestão Logística", "categoria": "ERP empresarial customizável", "finalidade": "Integra processos administrativos, financeiros, fiscais, comerciais, operacionais e logísticos.", "processos": "Cadastros; compras; estoque; produção; vendas; financeiro; fiscal; serviços e integrações."}, {"empresa": "Centro Logístico", "sistema": "Omie", "valor": 168.42, "contexto": "Corporativo", "pagamento": "Omie", "observacao": "", "segmento": "ERP Financeiro, Fiscal e Administrativo", "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza rotinas administrativas, comerciais, financeiras e fiscais das empresas.", "processos": "Financeiro; vendas; notas fiscais; compras; estoque; serviços; CRM e conciliação bancária."}, {"empresa": "Grupo MNGT", "sistema": "Sankhya", "valor": 8589.77, "contexto": "Corporativo", "pagamento": "Sankhya", "observacao": "", "segmento": "ERP Corporativo e Gestão Empresarial", "categoria": "ERP de gestão integrada", "finalidade": "Centraliza e conecta os processos administrativos, financeiros, fiscais, comerciais e operacionais do grupo.", "processos": "Compras; financeiro; fiscal; contabilidade; vendas; estoque; contratos e controladoria."}, {"empresa": "Grupo MNGT", "sistema": "Google", "valor": 11483.61, "contexto": "Escritório", "pagamento": "Cartão de Crédito", "observacao": "", "segmento": "Produtividade e Colaboração Corporativa", "categoria": "Suíte de trabalho em nuvem", "finalidade": "Disponibiliza comunicação, armazenamento e ferramentas colaborativas para as equipes do Grupo MNGT.", "processos": "E-mail corporativo; Drive; documentos; planilhas; apresentações; reuniões; agenda e arquivos."}, {"empresa": "Grupo MNGT", "sistema": "WMS Senior", "valor": null, "contexto": "Corporativo", "pagamento": "Sankhya", "observacao": "Valor mensal pendente de confirmação.", "segmento": "Gestão de Armazéns e Logística", "categoria": "WMS — Warehouse Management System", "finalidade": "Controla a operação do armazém desde a portaria e o recebimento até a armazenagem, separação e expedição.", "processos": "Portaria; recebimento; conferência; endereçamento; inventário; separação; carregamento e expedição."}, {"empresa": "Grupo MNGT", "sistema": "OpenRouter", "valor": 25.0, "contexto": "Desenvolvimento", "pagamento": "Cartão de Crédito", "observacao": "Referência contratual: US$ 5,00.", "segmento": "Infraestrutura e Integração de Inteligência Artificial", "categoria": "Gateway de modelos de IA", "finalidade": "Centraliza o acesso por API a diferentes modelos de inteligência artificial para aplicações e automações.", "processos": "APIs de IA; seleção de modelos; roteamento; testes; consumo; monitoramento e integrações."}, {"empresa": "Grupo MNGT", "sistema": "OVH Cloud", "valor": 993.92, "contexto": "Desenvolvimento", "pagamento": "Cartão de Crédito", "observacao": "Referência contratual: € 169,90.", "segmento": "Infraestrutura em Nuvem e Hospedagem", "categoria": "Cloud computing e servidores", "finalidade": "Fornece infraestrutura em nuvem para hospedagem de aplicações, bancos de dados e ambientes de desenvolvimento.", "processos": "Servidores; hospedagem; redes; armazenamento; backups; bancos de dados e ambientes web."}, {"empresa": "Grupo MNGT", "sistema": "Claude – Anthropic", "valor": 660.2, "contexto": "Desenvolvimento", "pagamento": "Cartão de Crédito", "observacao": "Referência contratual: US$ 125,00.", "segmento": "Inteligência Artificial Generativa", "categoria": "Assistente e plataforma de IA", "finalidade": "Apoia análise, redação, programação, documentação e automação com inteligência artificial generativa.", "processos": "Documentos; conteúdo; programação; pesquisa; análise; documentação e apoio à decisão."}];
 const BRL=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
-const els={company:document.getElementById('company'),system:document.getElementById('system'),segment:document.getElementById('segment'),context:document.getElementById('context'),payment:document.getElementById('payment'),search:document.getElementById('search')};
-function unique(k){return [...new Set(DATA.map(d=>d[k]))].sort((a,b)=>a.localeCompare(b,'pt-BR'))}
-function fill(el,vals){vals.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;el.appendChild(o)})}
-fill(els.company,unique('empresa'));fill(els.system,unique('sistema'));fill(els.segment,unique('segmento'));fill(els.context,unique('contexto'));fill(els.payment,unique('pagamento'));
-function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-function filtered(){const q=els.search.value.trim().toLowerCase();return DATA.filter(d=>(!els.company.value||d.empresa===els.company.value)&&(!els.system.value||d.sistema===els.system.value)&&(!els.segment.value||d.segmento===els.segment.value)&&(!els.context.value||d.contexto===els.context.value)&&(!els.payment.value||d.pagamento===els.payment.value)&&(!q||Object.values(d).join(' ').toLowerCase().includes(q)))}
-function aggregate(rows,key){const m={};rows.forEach(d=>{if(typeof d.valor==='number')m[d[key]]=(m[d[key]]||0)+d.valor});return Object.entries(m).sort((a,b)=>b[1]-a[1])}
-function setup(canvas){const r=canvas.getBoundingClientRect(),ratio=devicePixelRatio||1;canvas.width=r.width*ratio;canvas.height=r.height*ratio;const ctx=canvas.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);return{ctx,w:r.width,h:r.height}}
-function bars(canvasId,entries){const {ctx,w,h}=setup(document.getElementById(canvasId));ctx.clearRect(0,0,w,h);if(!entries.length)return;const left=Math.min(170,w*.35),right=85,top=14,row=(h-30)/entries.length,max=Math.max(...entries.map(e=>e[1]));ctx.font='12px Segoe UI';ctx.textBaseline='middle';entries.forEach(([name,val],i)=>{const y=top+i*row+row*.22,bh=Math.min(27,row*.56),bw=(w-left-right)*val/max;ctx.fillStyle='#e8eaee';ctx.fillRect(left,y,w-left-right,bh);ctx.fillStyle=i===0?'#b50918':'#35383d';ctx.fillRect(left,y,bw,bh);ctx.fillStyle='#333';ctx.textAlign='right';ctx.fillText(name,left-10,y+bh/2);ctx.textAlign='left';ctx.font='700 11px Segoe UI';ctx.fillText(BRL.format(val),left+bw+7,y+bh/2);ctx.font='12px Segoe UI'})}
-function donut(canvasId,entries){const {ctx,w,h}=setup(document.getElementById(canvasId));ctx.clearRect(0,0,w,h);if(!entries.length)return;const colors=['#b50918','#252525','#76000b','#6b7280','#d23b48','#9ca3af','#d97706','#147d57','#4338ca','#0891b2','#7c3aed','#be123c','#4d7c0f'],total=entries.reduce((a,e)=>a+e[1],0),cx=w*.39,cy=h*.48,outer=Math.min(w,h)*.29,inner=outer*.58;let start=-Math.PI/2;entries.forEach(([n,v],i)=>{const a=v/total*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,outer,start,start+a);ctx.arc(cx,cy,inner,start+a,start,true);ctx.closePath();ctx.fillStyle=colors[i%colors.length];ctx.fill();start+=a});ctx.textAlign='center';ctx.fillStyle='#222';ctx.font='800 18px Segoe UI';ctx.fillText(BRL.format(total),cx,cy);ctx.font='10px Segoe UI';ctx.fillStyle='#777';ctx.fillText('TOTAL MENSAL',cx,cy+20);let y=24;ctx.textAlign='left';entries.slice(0,8).forEach(([n,v],i)=>{ctx.fillStyle=colors[i%colors.length];ctx.fillRect(w*.69,y,10,10);ctx.fillStyle='#333';ctx.font='700 10px Segoe UI';ctx.fillText(n,w*.69+16,y+8);ctx.fillStyle='#777';ctx.font='10px Segoe UI';ctx.fillText(`${(v/total*100).toFixed(1)}%`,w*.69+16,y+22);y+=38})}
-function render(){
- const rows=filtered(),numeric=rows.filter(d=>typeof d.valor==='number'),total=numeric.reduce((a,d)=>a+d.valor,0),companies=aggregate(rows,'empresa'),systems=aggregate(rows,'sistema'),pending=rows.filter(d=>d.valor===null);
- document.getElementById('monthly').textContent=BRL.format(total);document.getElementById('annual').textContent=BRL.format(total*12);document.getElementById('companies').textContent=new Set(rows.map(d=>d.empresa)).size;document.getElementById('systems').textContent=new Set(rows.map(d=>d.sistema)).size;document.getElementById('pending').textContent=pending.length;
- document.getElementById('largest').textContent=systems[0]?BRL.format(systems[0][1]):'—';document.getElementById('largestName').textContent=systems[0]?systems[0][0]:'Sem dados';
- document.getElementById('rowCount').textContent=`${rows.length} registros`;document.getElementById('systemCount').textContent=`${new Set(rows.map(d=>d.sistema)).size} sistemas`;
- document.getElementById('tbody').innerHTML=rows.map(d=>`<tr><td><strong>${esc(d.empresa)}</strong></td><td><span class="tag">${esc(d.sistema)}</span></td><td>${esc(d.segmento)}</td><td>${esc(d.contexto)}</td><td>${esc(d.pagamento)}</td><td class="purpose-cell">${esc(d.finalidade)}</td><td class="money ${d.valor===null?'pending-text':''}">${d.valor===null?'Valor pendente':BRL.format(d.valor)}</td><td class="money ${d.valor===null?'pending-text':''}">${d.valor===null?'Valor pendente':BRL.format(d.valor*12)}</td></tr>`).join('');
- document.getElementById('empty').style.display=rows.length?'none':'block';
- const names=[...new Set(rows.map(d=>d.sistema))];
- document.getElementById('cards').innerHTML=names.map(name=>{const list=rows.filter(d=>d.sistema===name),d=list[0],value=list.reduce((a,x)=>a+(typeof x.valor==='number'?x.valor:0),0),hasPending=list.some(x=>x.valor===null),companies=[...new Set(list.map(x=>x.empresa))];return `<article class="system"><div class="system-top"><div><div class="segment">${esc(d.segmento)}</div><h3>${esc(name)}</h3></div><div class="amount ${hasPending?'pending':''}"><small>Custo mensal</small>${hasPending?'Valor pendente':BRL.format(value)}</div></div><p class="purpose">${esc(d.finalidade)}</p><div class="label">Principais processos</div><p class="detail">${esc(d.processos)}</p><div class="meta"><div class="meta-box"><b>Contexto</b><span>${esc([...new Set(list.map(x=>x.contexto))].join(', '))}</span></div><div class="meta-box"><b>Pagamento</b><span>${esc([...new Set(list.map(x=>x.pagamento))].join(', '))}</span></div></div><div class="label">Empresas</div><div class="tags">${companies.map(c=>`<span class="tag">${esc(c)}</span>`).join('')}</div>${d.observacao?`<div class="label">Observação</div><p class="detail">${esc(d.observacao)}</p>`:''}</article>`}).join('');
- document.getElementById('insights').innerHTML=`<div class="insight"><b>Total mensal informado</b><span>${BRL.format(total)} por mês e ${BRL.format(total*12)} por ano.</span></div><div class="insight"><b>Maior custo</b><span>${systems[0]?`${esc(systems[0][0])} representa ${BRL.format(systems[0][1])} por mês.`:'Sem dados'}</span></div><div class="insight"><b>Valor pendente</b><span>${pending.length?pending.map(d=>esc(d.sistema)).join(', ')+' permanece sem valor mensal informado.':'Não há valores pendentes.'}</span></div>`;
- bars('companyChart',companies);donut('systemChart',systems)
+const els={
+  company:document.getElementById('company'),
+  system:document.getElementById('system'),
+  segment:document.getElementById('segment'),
+  context:document.getElementById('context'),
+  payment:document.getElementById('payment'),
+  search:document.getElementById('search')
+};
+
+function unique(key){
+  return [...new Set(DATA.map(item=>item[key]))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
 }
-Object.values(els).forEach(el=>el.addEventListener(el.tagName==='INPUT'?'input':'change',render));
-document.getElementById('clear').addEventListener('click',()=>{Object.values(els).forEach(el=>el.value='');render()});
-document.getElementById('csv').addEventListener('click',()=>{const rows=filtered(),csv=['Empresa;Sistema;Segmento;Contexto;Meio de Pagamento;Valor Mensal;Valor Anual;Status',...rows.map(d=>`${d.empresa};${d.sistema};${d.segmento};${d.contexto};${d.pagamento};${d.valor===null?'Valor pendente':d.valor.toFixed(2).replace('.',',')};${d.valor===null?'Valor pendente':(d.valor*12).toFixed(2).replace('.',',')};${d.valor===null?'Valor pendente':'Valor informado'}`)].join('\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='custos_sistemas_grupo_mngt.csv';a.click();URL.revokeObjectURL(a.href)});
-let timer;addEventListener('resize',()=>{clearTimeout(timer);timer=setTimeout(render,120)});document.getElementById('updated').textContent='Atualizado em '+new Date().toLocaleDateString('pt-BR');render();
+function fillSelect(element,values){
+  values.forEach(value=>{
+    const option=document.createElement('option');
+    option.value=value;
+    option.textContent=value;
+    element.appendChild(option);
+  });
+}
+fillSelect(els.company,unique('empresa'));
+fillSelect(els.system,unique('sistema'));
+fillSelect(els.segment,unique('segmento'));
+fillSelect(els.context,unique('contexto'));
+fillSelect(els.payment,unique('pagamento'));
+
+function escapeHTML(value){
+  return String(value??'').replace(/[&<>"']/g,char=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+  }[char]));
+}
+function filteredData(){
+  const query=els.search.value.trim().toLowerCase();
+  return DATA.filter(item=>
+    (!els.company.value||item.empresa===els.company.value)&&
+    (!els.system.value||item.sistema===els.system.value)&&
+    (!els.segment.value||item.segmento===els.segment.value)&&
+    (!els.context.value||item.contexto===els.context.value)&&
+    (!els.payment.value||item.pagamento===els.payment.value)&&
+    (!query||Object.values(item).join(' ').toLowerCase().includes(query))
+  );
+}
+function aggregate(rows,key){
+  const result={};
+  rows.forEach(item=>{
+    if(typeof item.valor==='number'){
+      result[item[key]]=(result[item[key]]||0)+item.valor;
+    }
+  });
+  return Object.entries(result).sort((a,b)=>b[1]-a[1]);
+}
+function setupCanvas(canvas){
+  const rect=canvas.getBoundingClientRect();
+  const ratio=window.devicePixelRatio||1;
+  canvas.width=rect.width*ratio;
+  canvas.height=rect.height*ratio;
+  const context=canvas.getContext('2d');
+  context.setTransform(ratio,0,0,ratio,0,0);
+  return {context,width:rect.width,height:rect.height};
+}
+function drawBars(canvasId,entries){
+  const {context,width,height}=setupCanvas(document.getElementById(canvasId));
+  context.clearRect(0,0,width,height);
+  if(!entries.length)return;
+
+  const left=Math.min(175,width*.36);
+  const right=92;
+  const top=14;
+  const rowHeight=(height-30)/entries.length;
+  const maxValue=Math.max(...entries.map(entry=>entry[1]));
+
+  context.font='12px Segoe UI';
+  context.textBaseline='middle';
+
+  entries.forEach(([name,value],index)=>{
+    const y=top+index*rowHeight+rowHeight*.22;
+    const barHeight=Math.min(27,rowHeight*.56);
+    const barWidth=(width-left-right)*value/maxValue;
+
+    context.fillStyle='#e8eaee';
+    context.fillRect(left,y,width-left-right,barHeight);
+
+    context.fillStyle=index===0?'#b50918':'#35383d';
+    context.fillRect(left,y,barWidth,barHeight);
+
+    context.fillStyle='#333';
+    context.textAlign='right';
+    context.fillText(name,left-10,y+barHeight/2);
+
+    context.textAlign='left';
+    context.font='700 11px Segoe UI';
+    context.fillText(BRL.format(value),left+barWidth+7,y+barHeight/2);
+    context.font='12px Segoe UI';
+  });
+}
+function drawDonut(canvasId,entries){
+  const {context,width,height}=setupCanvas(document.getElementById(canvasId));
+  context.clearRect(0,0,width,height);
+  if(!entries.length)return;
+
+  const colors=['#b50918','#252525','#76000b','#6b7280','#d23b48','#9ca3af','#d97706','#147d57','#4338ca','#0891b2','#7c3aed','#be123c','#4d7c0f'];
+  const total=entries.reduce((sum,entry)=>sum+entry[1],0);
+  const centerX=width*.39;
+  const centerY=height*.48;
+  const outerRadius=Math.min(width,height)*.29;
+  const innerRadius=outerRadius*.58;
+  let start=-Math.PI/2;
+
+  entries.forEach(([name,value],index)=>{
+    const angle=value/total*Math.PI*2;
+    context.beginPath();
+    context.arc(centerX,centerY,outerRadius,start,start+angle);
+    context.arc(centerX,centerY,innerRadius,start+angle,start,true);
+    context.closePath();
+    context.fillStyle=colors[index%colors.length];
+    context.fill();
+    start+=angle;
+  });
+
+  context.textAlign='center';
+  context.fillStyle='#222';
+  context.font='800 18px Segoe UI';
+  context.fillText(BRL.format(total),centerX,centerY);
+  context.font='10px Segoe UI';
+  context.fillStyle='#777';
+  context.fillText('TOTAL MENSAL',centerX,centerY+20);
+
+  let legendY=22;
+  context.textAlign='left';
+  entries.slice(0,8).forEach(([name,value],index)=>{
+    context.fillStyle=colors[index%colors.length];
+    context.fillRect(width*.69,legendY,10,10);
+    context.fillStyle='#333';
+    context.font='700 10px Segoe UI';
+    context.fillText(name,width*.69+16,legendY+8);
+    context.fillStyle='#777';
+    context.font='10px Segoe UI';
+    context.fillText(`${(value/total*100).toFixed(1)}%`,width*.69+16,legendY+22);
+    legendY+=38;
+  });
+}
+function render(){
+  const rows=filteredData();
+  const numericRows=rows.filter(item=>typeof item.valor==='number');
+  const total=numericRows.reduce((sum,item)=>sum+item.valor,0);
+  const companyTotals=aggregate(rows,'empresa');
+  const systemTotals=aggregate(rows,'sistema');
+  const pendingRows=rows.filter(item=>item.valor===null);
+
+  document.getElementById('monthly').textContent=BRL.format(total);
+  document.getElementById('annual').textContent=BRL.format(total*12);
+  document.getElementById('companies').textContent=new Set(rows.map(item=>item.empresa)).size;
+  document.getElementById('systems').textContent=new Set(rows.map(item=>item.sistema)).size;
+  document.getElementById('pending').textContent=pendingRows.length;
+  document.getElementById('largest').textContent=systemTotals[0]?BRL.format(systemTotals[0][1]):'—';
+  document.getElementById('largestName').textContent=systemTotals[0]?systemTotals[0][0]:'Sem dados';
+  document.getElementById('rowCount').textContent=`${rows.length} registros`;
+  document.getElementById('systemCount').textContent=`${new Set(rows.map(item=>item.sistema)).size} sistemas`;
+
+  document.getElementById('tbody').innerHTML=rows.map(item=>`
+    <tr>
+      <td><strong>${escapeHTML(item.empresa)}</strong></td>
+      <td><span class="tag">${escapeHTML(item.sistema)}</span></td>
+      <td>${escapeHTML(item.segmento)}</td>
+      <td>${escapeHTML(item.contexto)}</td>
+      <td>${escapeHTML(item.pagamento)}</td>
+      <td class="purpose-cell">${escapeHTML(item.finalidade)}</td>
+      <td class="money ${item.valor===null?'pending-text':''}">
+        ${item.valor===null?'Valor pendente':BRL.format(item.valor)}
+      </td>
+      <td class="money ${item.valor===null?'pending-text':''}">
+        ${item.valor===null?'Valor pendente':BRL.format(item.valor*12)}
+      </td>
+    </tr>
+  `).join('');
+
+  document.getElementById('empty').style.display=rows.length?'none':'block';
+
+  const systemNames=[...new Set(rows.map(item=>item.sistema))];
+
+  document.getElementById('cards').innerHTML=systemNames.map(systemName=>{
+    const systemRows=rows.filter(item=>item.sistema===systemName);
+    const item=systemRows[0];
+    const value=systemRows.reduce((sum,current)=>sum+(typeof current.valor==='number'?current.valor:0),0);
+    const hasPending=systemRows.some(current=>current.valor===null);
+    const companies=[...new Set(systemRows.map(current=>current.empresa))];
+    const contexts=[...new Set(systemRows.map(current=>current.contexto))];
+    const payments=[...new Set(systemRows.map(current=>current.pagamento))];
+    const observations=[...new Set(systemRows.map(current=>current.observacao).filter(Boolean))];
+
+    return `
+      <article class="system">
+        <div class="system-top">
+          <div>
+            <div class="segment">${escapeHTML(item.segmento)}</div>
+            <h3>${escapeHTML(systemName)}</h3>
+          </div>
+          <div class="amount ${hasPending?'pending':''}">
+            <small>Custo mensal</small>
+            ${hasPending?'Valor pendente':BRL.format(value)}
+          </div>
+        </div>
+
+        <p class="purpose">${escapeHTML(item.finalidade)}</p>
+
+        <div class="label">Principais processos</div>
+        <p class="detail">${escapeHTML(item.processos)}</p>
+
+        <div class="meta">
+          <div class="meta-box">
+            <b>Contexto</b>
+            <span>${escapeHTML(contexts.join(', '))}</span>
+          </div>
+          <div class="meta-box">
+            <b>Pagamento</b>
+            <span>${escapeHTML(payments.join(', '))}</span>
+          </div>
+        </div>
+
+        <div class="label">Empresa(s)</div>
+        <div class="tags">
+          ${companies.map(company=>`<span class="tag">${escapeHTML(company)}</span>`).join('')}
+        </div>
+
+        ${observations.length?`
+          <div class="label">Observação</div>
+          <p class="detail">${escapeHTML(observations.join(' | '))}</p>
+        `:''}
+      </article>
+    `;
+  }).join('');
+
+  document.getElementById('insights').innerHTML=`
+    <div class="insight">
+      <b>Total mensal informado</b>
+      <span>${BRL.format(total)} por mês e ${BRL.format(total*12)} por ano.</span>
+    </div>
+    <div class="insight">
+      <b>Maior custo</b>
+      <span>${systemTotals[0]?`${escapeHTML(systemTotals[0][0])} representa ${BRL.format(systemTotals[0][1])} por mês.`:'Sem dados'}</span>
+    </div>
+    <div class="insight">
+      <b>Valor pendente</b>
+      <span>${pendingRows.length?`${pendingRows.map(item=>escapeHTML(item.sistema)).join(', ')} permanece sem valor mensal informado.`:'Não há valores pendentes.'}</span>
+    </div>
+  `;
+
+  drawBars('companyChart',companyTotals);
+  drawDonut('systemChart',systemTotals);
+}
+
+Object.values(els).forEach(element=>{
+  element.addEventListener(element.tagName==='INPUT'?'input':'change',render);
+});
+
+document.getElementById('clear').addEventListener('click',()=>{
+  Object.values(els).forEach(element=>element.value='');
+  render();
+});
+
+document.getElementById('csv').addEventListener('click',()=>{
+  const rows=filteredData();
+  const csv=[
+    'Empresa;Sistema;Segmento;Contexto;Meio de Pagamento;Valor Mensal;Valor Anual;Status',
+    ...rows.map(item=>
+      `${item.empresa};${item.sistema};${item.segmento};${item.contexto};${item.pagamento};`+
+      `${item.valor===null?'Valor pendente':item.valor.toFixed(2).replace('.',',')};`+
+      `${item.valor===null?'Valor pendente':(item.valor*12).toFixed(2).replace('.',',')};`+
+      `${item.valor===null?'Valor pendente':'Valor informado'}`
+    )
+  ].join('\n');
+
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  const link=document.createElement('a');
+  link.href=URL.createObjectURL(blob);
+  link.download='custos_sistemas_grupo_mngt.csv';
+  link.click();
+  URL.revokeObjectURL(link.href);
+});
+
+let resizeTimer;
+window.addEventListener('resize',()=>{
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(render,120);
+});
+
+document.getElementById('updated').textContent='Atualizado em '+new Date().toLocaleDateString('pt-BR');
+render();
 </script>
 </body>
 </html>
