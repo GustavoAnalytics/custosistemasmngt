@@ -3,61 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel Corporativo | Custos com Sistemas</title>
+  <title>Painel Corporativo | Custos e Sistemas</title>
   <style>
-    :root {
-      --red:#b50918;
-      --red-dark:#76000b;
-      --black:#121212;
-      --graphite:#252525;
-      --gray-900:#292929;
-      --gray-700:#60646c;
-      --gray-500:#9ca3af;
-      --gray-300:#d8dce2;
-      --gray-100:#f3f4f6;
-      --white:#ffffff;
-      --green:#147d57;
-      --shadow:0 14px 35px rgba(18,18,18,.10);
+    :root{
+      --red:#b50918;--red-dark:#76000b;--black:#121212;--graphite:#252525;
+      --gray-700:#60646c;--gray-500:#9ca3af;--gray-300:#d8dce2;
+      --gray-100:#f3f4f6;--white:#fff;--shadow:0 14px 35px rgba(18,18,18,.10);
       --radius:20px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0;
-      font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--black);
-      background:
-        radial-gradient(circle at 92% 3%, rgba(181,9,24,.10), transparent 27rem),
-        linear-gradient(180deg,#fff 0%,#f5f6f8 100%);
-      min-height:100vh;
+      margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;color:var(--black);
+      background:radial-gradient(circle at 92% 3%,rgba(181,9,24,.10),transparent 27rem),
+                 linear-gradient(180deg,#fff 0%,#f5f6f8 100%);min-height:100vh
     }
     button,select,input{font:inherit}
+    a{color:inherit}
     .shell{max-width:1500px;margin:auto;padding:26px}
     .hero{
-      position:relative;overflow:hidden;
-      color:white;background:linear-gradient(125deg,#0c0c0c 0%,#252525 62%,#71000a 100%);
+      position:relative;overflow:hidden;color:#fff;
+      background:linear-gradient(125deg,#0c0c0c 0%,#252525 62%,#71000a 100%);
       border-radius:28px;padding:34px 38px;box-shadow:var(--shadow);
-      display:flex;align-items:center;justify-content:space-between;gap:24px;
+      display:flex;align-items:center;justify-content:space-between;gap:24px
     }
     .hero:after{
       content:"";position:absolute;width:350px;height:350px;right:-90px;top:-190px;
       border:1px solid rgba(255,255,255,.15);border-radius:50%;
-      box-shadow:0 0 0 50px rgba(255,255,255,.035),0 0 0 100px rgba(255,255,255,.025);
+      box-shadow:0 0 0 50px rgba(255,255,255,.035),0 0 0 100px rgba(255,255,255,.025)
     }
-    .brand{position:relative;z-index:1}
+    .brand,.seal{position:relative;z-index:1}
     .eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.19em;color:#ef9aa2;font-weight:800}
-    h1{font-size:clamp(1.9rem,4vw,3.4rem);line-height:1.03;margin:10px 0 12px;max-width:850px}
-    .hero p{margin:0;color:#d6d6d6;max-width:850px;font-size:1.02rem;line-height:1.6}
+    h1{font-size:clamp(1.9rem,4vw,3.4rem);line-height:1.03;margin:10px 0 12px;max-width:900px}
+    .hero p{margin:0;color:#d6d6d6;max-width:900px;font-size:1.02rem;line-height:1.6}
     .seal{
-      position:relative;z-index:1;min-width:150px;height:150px;border-radius:50%;
-      display:grid;place-items:center;text-align:center;font-weight:900;font-size:1.08rem;
-      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);
-      backdrop-filter:blur(8px)
+      min-width:150px;height:150px;border-radius:50%;display:grid;place-items:center;
+      text-align:center;font-weight:900;font-size:1.08rem;background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px)
     }
     .seal span{display:block;color:#ef9aa2;font-size:.72rem;letter-spacing:.14em;margin-top:5px}
     .filters{
-      margin:24px 0;display:flex;flex-wrap:wrap;gap:12px;align-items:end;
-      background:#fff;padding:16px;border-radius:18px;box-shadow:0 8px 20px rgba(18,18,18,.06)
+      margin:24px 0;display:flex;flex-wrap:wrap;gap:12px;align-items:end;background:#fff;
+      padding:16px;border-radius:18px;box-shadow:0 8px 20px rgba(18,18,18,.06)
     }
     .field{display:flex;flex-direction:column;gap:6px;min-width:210px;flex:1}
     .field label{font-size:.78rem;color:var(--gray-700);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
@@ -66,10 +53,7 @@
       padding:11px 13px;outline:none;transition:.2s
     }
     select:focus,input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(181,9,24,.10)}
-    .btn{
-      border:0;border-radius:12px;padding:12px 16px;cursor:pointer;font-weight:800;
-      background:var(--black);color:white;transition:.2s;white-space:nowrap
-    }
+    .btn{border:0;border-radius:12px;padding:12px 16px;cursor:pointer;font-weight:800;background:var(--black);color:#fff;transition:.2s;white-space:nowrap}
     .btn:hover{transform:translateY(-1px);background:var(--red)}
     .btn.secondary{background:#fff;color:var(--black);border:1px solid var(--gray-300)}
     .grid-kpi{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-bottom:18px}
@@ -83,22 +67,42 @@
     .kpi span{font-size:.82rem;color:var(--gray-700)}
     .layout{display:grid;grid-template-columns:1.18fr .82fr;gap:18px}
     .card{
-      background:#fff;border-radius:var(--radius);padding:22px;
-      box-shadow:0 8px 24px rgba(18,18,18,.06);border:1px solid #eceef1
+      background:#fff;border-radius:var(--radius);padding:22px;box-shadow:0 8px 24px rgba(18,18,18,.06);
+      border:1px solid #eceef1
     }
     .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:16px}
-    .card h2{font-size:1.05rem;margin:0 0 6px}
-    .card p{margin:0;color:var(--gray-700);font-size:.86rem}
+    .card h2,.section-title h2{font-size:1.08rem;margin:0 0 6px}
+    .card p,.section-title p{margin:0;color:var(--gray-700);font-size:.88rem;line-height:1.55}
     .chart-wrap{position:relative;height:350px}
     canvas{width:100%!important;height:100%!important}
+    .full{grid-column:1/-1}
+    .section-title{display:flex;justify-content:space-between;gap:20px;align-items:end;margin:26px 2px 14px}
+    .systems-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .system-card{
+      background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:19px;
+      box-shadow:0 8px 22px rgba(18,18,18,.055);position:relative;overflow:hidden
+    }
+    .system-card:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--red),var(--red-dark))}
+    .system-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .system-card h3{font-size:1.06rem;margin:5px 0 4px}
+    .category{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--red);font-weight:900}
+    .amount{text-align:right;font-weight:900;white-space:nowrap}
+    .amount small{display:block;font-size:.68rem;color:var(--gray-700);font-weight:700;text-transform:uppercase}
+    .purpose{color:#34373c;line-height:1.5;font-size:.88rem;margin:14px 0}
+    .detail-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-700);font-weight:900;margin-top:12px}
+    .detail-text{font-size:.82rem;color:#4b4f56;line-height:1.48;margin:4px 0}
+    .companies{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .tag,.pill{display:inline-flex;padding:5px 9px;border-radius:999px;background:#f3f4f6;font-size:.75rem;font-weight:750}
+    .source{display:inline-flex;margin-top:13px;color:var(--red);font-size:.78rem;font-weight:800;text-decoration:none}
+    .source:hover{text-decoration:underline}
     .table-card{grid-column:1/-1}
     .table-wrap{overflow:auto;border:1px solid #e8eaee;border-radius:14px}
-    table{width:100%;border-collapse:collapse;min-width:760px}
-    th,td{padding:13px 15px;border-bottom:1px solid #eceef1;text-align:left}
-    th{position:sticky;top:0;background:var(--black);color:white;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
-    td:last-child,th:last-child,td:nth-last-child(2),th:nth-last-child(2){text-align:right}
+    table{width:100%;border-collapse:collapse;min-width:1280px}
+    th,td{padding:13px 15px;border-bottom:1px solid #eceef1;text-align:left;vertical-align:top}
+    th{position:sticky;top:0;background:var(--black);color:#fff;font-size:.76rem;text-transform:uppercase;letter-spacing:.05em}
+    td:nth-last-child(-n+2),th:nth-last-child(-n+2){text-align:right;white-space:nowrap}
     tbody tr:hover{background:#fff4f5}
-    .pill{display:inline-flex;padding:5px 9px;border-radius:999px;background:#f3f4f6;font-size:.78rem;font-weight:700}
+    .system-purpose{max-width:390px;color:#50545b;line-height:1.45;font-size:.82rem}
     .insights{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .insight{border-left:4px solid var(--red);background:#fff7f7;padding:15px;border-radius:4px 12px 12px 4px}
     .insight b{display:block;margin-bottom:5px}
@@ -108,25 +112,18 @@
     @media(max-width:1100px){
       .grid-kpi{grid-template-columns:repeat(2,1fr)}
       .layout{grid-template-columns:1fr}
-      .table-card{grid-column:auto}
+      .systems-grid{grid-template-columns:repeat(2,1fr)}
       .insights{grid-template-columns:1fr}
     }
     @media(max-width:680px){
-      .shell{padding:12px}
-      .hero{padding:26px 22px;align-items:flex-start}
-      .seal{display:none}
-      .grid-kpi{grid-template-columns:1fr}
-      .filters{align-items:stretch}
-      .field{min-width:100%}
-      .chart-wrap{height:300px}
+      .shell{padding:12px}.hero{padding:26px 22px;align-items:flex-start}.seal{display:none}
+      .grid-kpi,.systems-grid{grid-template-columns:1fr}.filters{align-items:stretch}
+      .field{min-width:100%}.chart-wrap{height:300px}.section-title{align-items:flex-start;flex-direction:column}
       footer{flex-direction:column}
     }
     @media print{
-      body{background:#fff}
-      .shell{max-width:none;padding:0}
-      .filters,.btn{display:none!important}
-      .hero,.card,.kpi{box-shadow:none;break-inside:avoid}
-      .layout{grid-template-columns:1fr}
+      body{background:#fff}.shell{max-width:none;padding:0}.filters,.btn{display:none!important}
+      .hero,.card,.kpi,.system-card{box-shadow:none;break-inside:avoid}.layout{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -135,25 +132,17 @@
     <section class="hero">
       <div class="brand">
         <div class="eyebrow">Grupo MNGT • Gestão Corporativa</div>
-        <h1>Painel de Custos com Sistemas</h1>
-        <p>Visão consolidada dos investimentos mensais e anuais em softwares, ERPs e plataformas operacionais das empresas do grupo.</p>
+        <h1>Painel de Custos e Aplicação dos Sistemas</h1>
+        <p>Visão consolidada dos investimentos mensais e anuais, com a finalidade de cada plataforma, processos atendidos e aplicação nas empresas do grupo.</p>
       </div>
       <div class="seal">MNGT<span>TECNOLOGIA</span></div>
     </section>
 
     <section class="filters">
-      <div class="field">
-        <label for="empresaFilter">Empresa</label>
-        <select id="empresaFilter"><option value="">Todas as empresas</option></select>
-      </div>
-      <div class="field">
-        <label for="sistemaFilter">Sistema</label>
-        <select id="sistemaFilter"><option value="">Todos os sistemas</option></select>
-      </div>
-      <div class="field">
-        <label for="search">Pesquisa</label>
-        <input id="search" type="search" placeholder="Empresa ou sistema...">
-      </div>
+      <div class="field"><label for="empresaFilter">Empresa</label><select id="empresaFilter"><option value="">Todas as empresas</option></select></div>
+      <div class="field"><label for="sistemaFilter">Sistema</label><select id="sistemaFilter"><option value="">Todos os sistemas</option></select></div>
+      <div class="field"><label for="segmentoFilter">Segmento</label><select id="segmentoFilter"><option value="">Todos os segmentos</option></select></div>
+      <div class="field"><label for="search">Pesquisa</label><input id="search" type="search" placeholder="Empresa, sistema, processo ou finalidade..."></div>
       <button class="btn secondary" id="clearBtn">Limpar filtros</button>
       <button class="btn" id="csvBtn">Exportar CSV</button>
     </section>
@@ -168,27 +157,32 @@
 
     <section class="layout">
       <article class="card">
-        <div class="card-head">
-          <div><h2>Custo mensal por empresa</h2><p>Comparativo consolidado das empresas selecionadas.</p></div>
-        </div>
+        <div class="card-head"><div><h2>Custo mensal por empresa</h2><p>Comparativo consolidado das empresas selecionadas.</p></div></div>
         <div class="chart-wrap"><canvas id="companyChart"></canvas></div>
       </article>
-
       <article class="card">
-        <div class="card-head">
-          <div><h2>Distribuição por sistema</h2><p>Participação de cada plataforma no custo total.</p></div>
-        </div>
+        <div class="card-head"><div><h2>Distribuição por sistema</h2><p>Participação de cada plataforma no custo total.</p></div></div>
         <div class="chart-wrap"><canvas id="systemChart"></canvas></div>
       </article>
+    </section>
 
+    <section>
+      <div class="section-title">
+        <div><h2>Catálogo corporativo dos sistemas</h2><p>Entenda a função de cada solução, os principais processos atendidos e onde ela é utilizada.</p></div>
+        <span class="pill" id="systemCount">0 sistemas</span>
+      </div>
+      <div class="systems-grid" id="systemsGrid"></div>
+    </section>
+
+    <section class="layout" style="margin-top:18px">
       <article class="card table-card">
         <div class="card-head">
-          <div><h2>Detalhamento dos contratos</h2><p>Custos mensais e projeção anual por empresa e sistema.</p></div>
+          <div><h2>Detalhamento dos contratos</h2><p>Custos, projeção anual e finalidade de cada sistema por empresa.</p></div>
           <div class="pill" id="countRows">0 registros</div>
         </div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Empresa</th><th>Sistema</th><th>Custo mensal</th><th>Projeção anual</th></tr></thead>
+            <thead><tr><th>Empresa</th><th>Sistema</th><th>Segmento</th><th>Categoria</th><th>O que faz</th><th>Custo mensal</th><th>Projeção anual</th></tr></thead>
             <tbody id="tbody"></tbody>
           </table>
           <div class="empty" id="empty">Nenhum registro encontrado para os filtros selecionados.</div>
@@ -204,136 +198,91 @@
   </main>
 
 <script>
-const DATA = [{"empresa": "Área Incrível", "sistema": "Sienge Prevision", "valor": 2991.66}, {"empresa": "Área Incrível", "sistema": "Sienge", "valor": 6375.41}, {"empresa": "Área Incrível", "sistema": "OnSafety", "valor": 446.01}, {"empresa": "Área Incrível", "sistema": "Mobuss", "valor": 155.0}, {"empresa": "Área Incrível", "sistema": "Omie", "valor": 2044.24}, {"empresa": "Área Incrível", "sistema": "Nuvinc", "valor": 2998.45}, {"empresa": "Rio Claro", "sistema": "UNO ERP", "valor": 1781.27}, {"empresa": "M2Log", "sistema": "UNO ERP", "valor": 1256.36}, {"empresa": "M2Log", "sistema": "Omie", "valor": 168.42}, {"empresa": "Grupo MNGT", "sistema": "UNO ERP", "valor": 180.6}, {"empresa": "Grupo MNGT", "sistema": "Omie", "valor": 168.42}, {"empresa": "A10", "sistema": "UNO ERP", "valor": 393.2}, {"empresa": "A10", "sistema": "Omie", "valor": 168.42}, {"empresa": "Centro Logístico", "sistema": "UNO ERP", "valor": 1781.27}, {"empresa": "Centro Logístico", "sistema": "Omie", "valor": 168.42}];
-const BRL = new Intl.NumberFormat('pt-BR', {style:'currency',currency:'BRL'});
-const PCT = new Intl.NumberFormat('pt-BR', {style:'percent',minimumFractionDigits:1,maximumFractionDigits:1});
-const palette = ['#b50918','#252525','#76000b','#6b7280','#d23b48','#9ca3af','#d97706','#147d57'];
+const DATA = [{"empresa": "Área Incrível", "sistema": "Sienge Prevision", "valor": 2991.66, "categoria": "Planejamento e gestão de obras", "finalidade": "Planeja e acompanha obras com metodologia Lean, cronogramas visuais, medições e visão consolidada de prazo e avanço físico.", "processos": "EAP; cronograma; Linha de Balanço; gestão de restrições; medições; Curva S; indicadores e quadro gerencial.", "aplicacao": "Área Incrível — planejamento das obras, acompanhamento da evolução, restrições e previsibilidade de entrega.", "segmento": "Planejamento e Controle de Obras"}, {"empresa": "Área Incrível", "sistema": "Sienge", "valor": 6375.41, "categoria": "ERP da construção civil", "finalidade": "Integra a gestão da construtora e incorporadora, conectando engenharia, suprimentos, financeiro, fiscal, comercial e obras.", "processos": "Orçamento; compras; contratos; medições; contas a pagar e receber; fiscal; vendas; incorporação e pós-venda.", "aplicacao": "Área Incrível — ERP principal para gestão das obras, contratos, suprimentos, custos e rotinas financeiras.", "segmento": "ERP para Construção Civil"}, {"empresa": "Área Incrível", "sistema": "OnSafety", "valor": 446.01, "categoria": "Saúde e Segurança do Trabalho", "finalidade": "Digitaliza a gestão de SST, centralizando controles, inspeções, evidências e informações dos trabalhadores.", "processos": "Controle e entrega de EPI; estoque; inspeções; treinamentos; exames; SST/eSocial; relatórios e indicadores.", "aplicacao": "Área Incrível — controle de segurança do trabalho, conformidade, inspeções e evidências nos canteiros.", "segmento": "Saúde e Segurança do Trabalho"}, {"empresa": "Área Incrível", "sistema": "Mobuss", "valor": 155.0, "categoria": "Gestão do canteiro e pós-obra", "finalidade": "Registra e monitora informações do canteiro em campo, conectando as equipes da obra e do escritório em tempo real.", "processos": "Diário de obra; qualidade e inspeções; documentos; segurança; vistoria e entrega; assistência técnica e evidências.", "aplicacao": "Área Incrível — execução em campo, qualidade, FVS, documentação, entrega de unidades e assistência técnica.", "segmento": "Gestão de Obras, Canteiro e Pós-obra"}, {"empresa": "Área Incrível", "sistema": "Omie", "valor": 2044.24, "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza a gestão administrativa, comercial, financeira e fiscal das empresas em uma plataforma integrada.", "processos": "Financeiro; vendas; NF-e e NFS-e; compras; estoque; serviços; CRM; conciliação bancária e relatórios.", "aplicacao": "Área Incrível, M2Log, Grupo MNGT, A10 e Centro Logístico — apoio financeiro, fiscal, faturamento e gestão administrativa.", "segmento": "ERP Financeiro, Fiscal e Administrativo"}, {"empresa": "Área Incrível", "sistema": "Nuvinc", "valor": 2998.45, "categoria": "Gestão de empreendimentos imobiliários", "finalidade": "Acompanha o ciclo de desenvolvimento dos empreendimentos e concentra informações estratégicas em um único ambiente.", "processos": "Mapas integrados; viabilidade financeira; cronogramas; tarefas; dashboards; checklists; KMZ e base de dados.", "aplicacao": "Área Incrível — novos negócios, viabilidade, legalização, produtos e acompanhamento das pendências dos empreendimentos.", "segmento": "Gestão de Empreendimentos Imobiliários"}, {"empresa": "Rio Claro", "sistema": "UNO ERP", "valor": 1781.27, "categoria": "ERP empresarial customizável", "finalidade": "Integra e automatiza processos empresariais em ambiente web, permitindo módulos, relatórios e integrações adaptados ao negócio.", "processos": "Cadastros; compras; estoque; fábrica e produção; vendas; financeiro; serviços; fiscal; relatórios e integrações.", "aplicacao": "Rio Claro, M2Log, Grupo MNGT, A10 e Centro Logístico — gestão empresarial, operação administrativa e integração das áreas.", "segmento": "ERP Empresarial Integrado"}, {"empresa": "M2Log", "sistema": "UNO ERP", "valor": 1256.36, "categoria": "ERP empresarial customizável", "finalidade": "Integra e automatiza processos empresariais em ambiente web, permitindo módulos, relatórios e integrações adaptados ao negócio.", "processos": "Cadastros; compras; estoque; fábrica e produção; vendas; financeiro; serviços; fiscal; relatórios e integrações.", "aplicacao": "Rio Claro, M2Log, Grupo MNGT, A10 e Centro Logístico — gestão empresarial, operação administrativa e integração das áreas.", "segmento": "ERP Empresarial Integrado"}, {"empresa": "M2Log", "sistema": "Omie", "valor": 168.42, "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza a gestão administrativa, comercial, financeira e fiscal das empresas em uma plataforma integrada.", "processos": "Financeiro; vendas; NF-e e NFS-e; compras; estoque; serviços; CRM; conciliação bancária e relatórios.", "aplicacao": "Área Incrível, M2Log, Grupo MNGT, A10 e Centro Logístico — apoio financeiro, fiscal, faturamento e gestão administrativa.", "segmento": "ERP Financeiro, Fiscal e Administrativo"}, {"empresa": "Grupo MNGT", "sistema": "UNO ERP", "valor": 180.6, "categoria": "ERP empresarial customizável", "finalidade": "Integra e automatiza processos empresariais em ambiente web, permitindo módulos, relatórios e integrações adaptados ao negócio.", "processos": "Cadastros; compras; estoque; fábrica e produção; vendas; financeiro; serviços; fiscal; relatórios e integrações.", "aplicacao": "Rio Claro, M2Log, Grupo MNGT, A10 e Centro Logístico — gestão empresarial, operação administrativa e integração das áreas.", "segmento": "ERP Empresarial Integrado"}, {"empresa": "Grupo MNGT", "sistema": "Omie", "valor": 168.42, "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza a gestão administrativa, comercial, financeira e fiscal das empresas em uma plataforma integrada.", "processos": "Financeiro; vendas; NF-e e NFS-e; compras; estoque; serviços; CRM; conciliação bancária e relatórios.", "aplicacao": "Área Incrível, M2Log, Grupo MNGT, A10 e Centro Logístico — apoio financeiro, fiscal, faturamento e gestão administrativa.", "segmento": "ERP Financeiro, Fiscal e Administrativo"}, {"empresa": "A10", "sistema": "UNO ERP", "valor": 393.2, "categoria": "ERP empresarial customizável", "finalidade": "Integra e automatiza processos empresariais em ambiente web, permitindo módulos, relatórios e integrações adaptados ao negócio.", "processos": "Cadastros; compras; estoque; fábrica e produção; vendas; financeiro; serviços; fiscal; relatórios e integrações.", "aplicacao": "Rio Claro, M2Log, Grupo MNGT, A10 e Centro Logístico — gestão empresarial, operação administrativa e integração das áreas.", "segmento": "ERP Empresarial Integrado"}, {"empresa": "A10", "sistema": "Omie", "valor": 168.42, "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza a gestão administrativa, comercial, financeira e fiscal das empresas em uma plataforma integrada.", "processos": "Financeiro; vendas; NF-e e NFS-e; compras; estoque; serviços; CRM; conciliação bancária e relatórios.", "aplicacao": "Área Incrível, M2Log, Grupo MNGT, A10 e Centro Logístico — apoio financeiro, fiscal, faturamento e gestão administrativa.", "segmento": "ERP Financeiro, Fiscal e Administrativo"}, {"empresa": "Centro Logístico", "sistema": "UNO ERP", "valor": 1781.27, "categoria": "ERP empresarial customizável", "finalidade": "Integra e automatiza processos empresariais em ambiente web, permitindo módulos, relatórios e integrações adaptados ao negócio.", "processos": "Cadastros; compras; estoque; fábrica e produção; vendas; financeiro; serviços; fiscal; relatórios e integrações.", "aplicacao": "Rio Claro, M2Log, Grupo MNGT, A10 e Centro Logístico — gestão empresarial, operação administrativa e integração das áreas.", "segmento": "ERP Empresarial Integrado"}, {"empresa": "Centro Logístico", "sistema": "Omie", "valor": 168.42, "categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza a gestão administrativa, comercial, financeira e fiscal das empresas em uma plataforma integrada.", "processos": "Financeiro; vendas; NF-e e NFS-e; compras; estoque; serviços; CRM; conciliação bancária e relatórios.", "aplicacao": "Área Incrível, M2Log, Grupo MNGT, A10 e Centro Logístico — apoio financeiro, fiscal, faturamento e gestão administrativa.", "segmento": "ERP Financeiro, Fiscal e Administrativo"}];
+const SYSTEMS = {"Sienge Prevision": {"categoria": "Planejamento e gestão de obras", "finalidade": "Planeja e acompanha obras com metodologia Lean, cronogramas visuais, medições e visão consolidada de prazo e avanço físico.", "processos": "EAP; cronograma; Linha de Balanço; gestão de restrições; medições; Curva S; indicadores e quadro gerencial.", "aplicacao": "Área Incrível — planejamento das obras, acompanhamento da evolução, restrições e previsibilidade de entrega.", "fonte": "https://sienge.com.br/prevision-obras/", "segmento": "Planejamento e Controle de Obras"}, "Sienge": {"categoria": "ERP da construção civil", "finalidade": "Integra a gestão da construtora e incorporadora, conectando engenharia, suprimentos, financeiro, fiscal, comercial e obras.", "processos": "Orçamento; compras; contratos; medições; contas a pagar e receber; fiscal; vendas; incorporação e pós-venda.", "aplicacao": "Área Incrível — ERP principal para gestão das obras, contratos, suprimentos, custos e rotinas financeiras.", "fonte": "https://sienge.com.br/sienge-plataforma/", "segmento": "ERP para Construção Civil"}, "OnSafety": {"categoria": "Saúde e Segurança do Trabalho", "finalidade": "Digitaliza a gestão de SST, centralizando controles, inspeções, evidências e informações dos trabalhadores.", "processos": "Controle e entrega de EPI; estoque; inspeções; treinamentos; exames; SST/eSocial; relatórios e indicadores.", "aplicacao": "Área Incrível — controle de segurança do trabalho, conformidade, inspeções e evidências nos canteiros.", "fonte": "https://onsafety.com.br/", "segmento": "Saúde e Segurança do Trabalho"}, "Mobuss": {"categoria": "Gestão do canteiro e pós-obra", "finalidade": "Registra e monitora informações do canteiro em campo, conectando as equipes da obra e do escritório em tempo real.", "processos": "Diário de obra; qualidade e inspeções; documentos; segurança; vistoria e entrega; assistência técnica e evidências.", "aplicacao": "Área Incrível — execução em campo, qualidade, FVS, documentação, entrega de unidades e assistência técnica.", "fonte": "https://www.mobussconstrucao.com.br/", "segmento": "Gestão de Obras, Canteiro e Pós-obra"}, "Omie": {"categoria": "ERP corporativo em nuvem", "finalidade": "Centraliza a gestão administrativa, comercial, financeira e fiscal das empresas em uma plataforma integrada.", "processos": "Financeiro; vendas; NF-e e NFS-e; compras; estoque; serviços; CRM; conciliação bancária e relatórios.", "aplicacao": "Área Incrível, M2Log, Grupo MNGT, A10 e Centro Logístico — apoio financeiro, fiscal, faturamento e gestão administrativa.", "fonte": "https://www.omie.com.br/", "segmento": "ERP Financeiro, Fiscal e Administrativo"}, "Nuvinc": {"categoria": "Gestão de empreendimentos imobiliários", "finalidade": "Acompanha o ciclo de desenvolvimento dos empreendimentos e concentra informações estratégicas em um único ambiente.", "processos": "Mapas integrados; viabilidade financeira; cronogramas; tarefas; dashboards; checklists; KMZ e base de dados.", "aplicacao": "Área Incrível — novos negócios, viabilidade, legalização, produtos e acompanhamento das pendências dos empreendimentos.", "fonte": "https://www.nuvinc.com.br/", "segmento": "Gestão de Empreendimentos Imobiliários"}, "UNO ERP": {"categoria": "ERP empresarial customizável", "finalidade": "Integra e automatiza processos empresariais em ambiente web, permitindo módulos, relatórios e integrações adaptados ao negócio.", "processos": "Cadastros; compras; estoque; fábrica e produção; vendas; financeiro; serviços; fiscal; relatórios e integrações.", "aplicacao": "Rio Claro, M2Log, Grupo MNGT, A10 e Centro Logístico — gestão empresarial, operação administrativa e integração das áreas.", "fonte": "https://unoerp.com.br/", "segmento": "ERP Empresarial Integrado"}};
+const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+const PCT = new Intl.NumberFormat('pt-BR',{style:'percent',minimumFractionDigits:1,maximumFractionDigits:1});
+const palette=['#b50918','#252525','#76000b','#6b7280','#d23b48','#9ca3af','#d97706','#147d57'];
 
-const els = {
-  empresa:document.getElementById('empresaFilter'),
-  sistema:document.getElementById('sistemaFilter'),
-  search:document.getElementById('search'),
-  tbody:document.getElementById('tbody'),
-  empty:document.getElementById('empty'),
-  insights:document.getElementById('insights')
+const els={
+  empresa:document.getElementById('empresaFilter'),sistema:document.getElementById('sistemaFilter'),segmento:document.getElementById('segmentoFilter'),
+  search:document.getElementById('search'),tbody:document.getElementById('tbody'),
+  empty:document.getElementById('empty'),insights:document.getElementById('insights'),
+  systemsGrid:document.getElementById('systemsGrid')
 };
 
-function unique(field) {
-  return [...new Set(DATA.map(d=>d[field]))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
-}
-function populateSelect(select, values) {
-  values.forEach(v=>{
-    const option=document.createElement('option'); option.value=v; option.textContent=v; select.appendChild(option);
-  });
-}
-populateSelect(els.empresa,unique('empresa'));
-populateSelect(els.sistema,unique('sistema'));
+function unique(field){return [...new Set(DATA.map(d=>d[field]))].sort((a,b)=>a.localeCompare(b,'pt-BR'))}
+function populateSelect(select,values){values.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;select.appendChild(o)})}
+populateSelect(els.empresa,unique('empresa'));populateSelect(els.sistema,unique('sistema'));populateSelect(els.segmento,unique('segmento'));
 
-function filteredData() {
+function normalizedText(d){
+  return `${d.empresa} ${d.sistema} ${d.segmento} ${d.categoria} ${d.finalidade} ${d.processos} ${d.aplicacao}`.toLocaleLowerCase('pt-BR')
+}
+function filteredData(){
   const q=els.search.value.trim().toLocaleLowerCase('pt-BR');
-  return DATA.filter(d =>
-    (!els.empresa.value || d.empresa===els.empresa.value) &&
-    (!els.sistema.value || d.sistema===els.sistema.value) &&
-    (!q || `${d.empresa} ${d.sistema}`.toLocaleLowerCase('pt-BR').includes(q))
-  );
+  return DATA.filter(d=>(!els.empresa.value||d.empresa===els.empresa.value)&&(!els.sistema.value||d.sistema===els.sistema.value)&&(!els.segmento.value||d.segmento===els.segmento.value)&&(!q||normalizedText(d).includes(q)))
 }
-function aggregate(rows, field) {
-  const map={};
-  rows.forEach(d=>map[d[field]]=(map[d[field]]||0)+d.valor);
-  return Object.entries(map).sort((a,b)=>b[1]-a[1]);
-}
-function roundRect(ctx,x,y,w,h,r) {
-  const rr=Math.min(r,w/2,h/2);
-  ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);
-  ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();
-}
-function setupCanvas(canvas) {
-  const rect=canvas.getBoundingClientRect(), ratio=window.devicePixelRatio||1;
-  canvas.width=rect.width*ratio;canvas.height=rect.height*ratio;
-  const ctx=canvas.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);
-  return {ctx,w:rect.width,h:rect.height};
-}
-function drawBars(entries) {
-  const canvas=document.getElementById('companyChart'), {ctx,w,h}=setupCanvas(canvas);
-  ctx.clearRect(0,0,w,h);
-  if(!entries.length) return;
-  const left=Math.min(170,w*.34), right=75, top=12, bottom=18;
-  const usableW=w-left-right, rowH=(h-top-bottom)/entries.length;
-  const max=Math.max(...entries.map(e=>e[1]))||1;
+function aggregate(rows,field){const m={};rows.forEach(d=>m[d[field]]=(m[d[field]]||0)+d.valor);return Object.entries(m).sort((a,b)=>b[1]-a[1])}
+function escapeHTML(value){return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]))}
+function roundRect(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath()}
+function setupCanvas(canvas){const rect=canvas.getBoundingClientRect(),ratio=window.devicePixelRatio||1;canvas.width=rect.width*ratio;canvas.height=rect.height*ratio;const ctx=canvas.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);return{ctx,w:rect.width,h:rect.height}}
+function drawBars(entries){
+  const canvas=document.getElementById('companyChart'),{ctx,w,h}=setupCanvas(canvas);ctx.clearRect(0,0,w,h);if(!entries.length)return;
+  const left=Math.min(170,w*.34),right=75,top=12,bottom=18,usableW=w-left-right,rowH=(h-top-bottom)/entries.length,max=Math.max(...entries.map(e=>e[1]))||1;
   ctx.font='12px Segoe UI';ctx.textBaseline='middle';
-  entries.forEach(([label,val],i)=>{
-    const y=top+i*rowH+rowH*.19, barH=Math.min(28,rowH*.57);
-    ctx.fillStyle='#3f444c';ctx.textAlign='right';
-    const shown=label.length>20?label.slice(0,18)+'…':label;
-    ctx.fillText(shown,left-12,y+barH/2);
-    ctx.fillStyle='#eef0f3';roundRect(ctx,left,y,usableW,barH,7);ctx.fill();
-    const bw=Math.max(5,usableW*val/max);
-    ctx.fillStyle=i===0?'#b50918':'#34383e';roundRect(ctx,left,y,bw,barH,7);ctx.fill();
-    ctx.fillStyle='#222';ctx.textAlign='left';ctx.font='700 11px Segoe UI';
-    ctx.fillText(BRL.format(val),left+bw+8,y+barH/2);
-    ctx.font='12px Segoe UI';
-  });
+  entries.forEach(([label,val],i)=>{const y=top+i*rowH+rowH*.19,barH=Math.min(28,rowH*.57);ctx.fillStyle='#3f444c';ctx.textAlign='right';ctx.fillText(label.length>20?label.slice(0,18)+'…':label,left-12,y+barH/2);ctx.fillStyle='#eef0f3';roundRect(ctx,left,y,usableW,barH,7);ctx.fill();const bw=Math.max(5,usableW*val/max);ctx.fillStyle=i===0?'#b50918':'#34383e';roundRect(ctx,left,y,bw,barH,7);ctx.fill();ctx.fillStyle='#222';ctx.textAlign='left';ctx.font='700 11px Segoe UI';ctx.fillText(BRL.format(val),left+bw+8,y+barH/2);ctx.font='12px Segoe UI'})
 }
-function drawDonut(entries) {
-  const canvas=document.getElementById('systemChart'), {ctx,w,h}=setupCanvas(canvas);
-  ctx.clearRect(0,0,w,h);
-  if(!entries.length) return;
-  const total=entries.reduce((a,e)=>a+e[1],0), cx=w*.42, cy=h*.48, outer=Math.min(w,h)*.29, inner=outer*.60;
-  let start=-Math.PI/2;
-  entries.forEach(([label,val],i)=>{
-    const angle=(val/total)*Math.PI*2;
-    ctx.beginPath();ctx.arc(cx,cy,outer,start,start+angle);ctx.arc(cx,cy,inner,start+angle,start,true);
-    ctx.closePath();ctx.fillStyle=palette[i%palette.length];ctx.fill();start+=angle;
-  });
-  ctx.fillStyle='#202020';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='800 19px Segoe UI';
-  ctx.fillText(BRL.format(total),cx,cy-8);ctx.fillStyle='#6b7280';ctx.font='11px Segoe UI';ctx.fillText('TOTAL MENSAL',cx,cy+15);
+function drawDonut(entries){
+  const canvas=document.getElementById('systemChart'),{ctx,w,h}=setupCanvas(canvas);ctx.clearRect(0,0,w,h);if(!entries.length)return;
+  const total=entries.reduce((a,e)=>a+e[1],0),cx=w*.42,cy=h*.48,outer=Math.min(w,h)*.29,inner=outer*.60;let start=-Math.PI/2;
+  entries.forEach(([label,val],i)=>{const angle=(val/total)*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,outer,start,start+angle);ctx.arc(cx,cy,inner,start+angle,start,true);ctx.closePath();ctx.fillStyle=palette[i%palette.length];ctx.fill();start+=angle});
+  ctx.fillStyle='#202020';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='800 19px Segoe UI';ctx.fillText(BRL.format(total),cx,cy-8);ctx.fillStyle='#6b7280';ctx.font='11px Segoe UI';ctx.fillText('TOTAL MENSAL',cx,cy+15);
   const legendX=w*.70;let ly=Math.max(16,h*.13);ctx.textAlign='left';
-  entries.slice(0,7).forEach(([label,val],i)=>{
-    ctx.fillStyle=palette[i%palette.length];roundRect(ctx,legendX,ly,10,10,2);ctx.fill();
-    ctx.fillStyle='#242424';ctx.font='700 11px Segoe UI';ctx.fillText(label,legendX+17,ly+5);
-    ctx.fillStyle='#71717a';ctx.font='10px Segoe UI';ctx.fillText(PCT.format(val/total),legendX+17,ly+20);
-    ly+=40;
-  });
+  entries.slice(0,7).forEach(([label,val],i)=>{ctx.fillStyle=palette[i%palette.length];roundRect(ctx,legendX,ly,10,10,2);ctx.fill();ctx.fillStyle='#242424';ctx.font='700 11px Segoe UI';ctx.fillText(label,legendX+17,ly+5);ctx.fillStyle='#71717a';ctx.font='10px Segoe UI';ctx.fillText(PCT.format(val/total),legendX+17,ly+20);ly+=40})
 }
-function render() {
-  const rows=filteredData(), total=rows.reduce((a,d)=>a+d.valor,0);
-  const companies=aggregate(rows,'empresa'), systems=aggregate(rows,'sistema');
-  document.getElementById('kpiMensal').textContent=BRL.format(total);
-  document.getElementById('kpiAnual').textContent=BRL.format(total*12);
-  document.getElementById('kpiEmpresas').textContent=companies.length;
-  document.getElementById('kpiSistemas').textContent=systems.length;
-  const top=companies[0];
-  document.getElementById('kpiConcentracao').textContent=top?PCT.format(top[1]/total):'—';
-  document.getElementById('kpiConcentracaoSub').textContent=top?top[0]:'Sem dados';
+function renderSystemCards(rows){
+  const names=[...new Set(rows.map(d=>d.sistema))];
+  document.getElementById('systemCount').textContent=`${names.length} sistema${names.length===1?'':'s'}`;
+  els.systemsGrid.innerHTML=names.map(name=>{
+    const info=SYSTEMS[name],records=rows.filter(d=>d.sistema===name),monthly=records.reduce((a,d)=>a+d.valor,0);
+    const companies=[...new Set(records.map(d=>d.empresa))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+    return `<article class="system-card">
+      <div class="system-top"><div><div class="category">${escapeHTML(info.segmento)}</div><h3>${escapeHTML(name)}</h3></div>
+      <div class="amount"><small>Custo mensal</small>${BRL.format(monthly)}</div></div>
+      <p class="purpose">${escapeHTML(info.finalidade)}</p>
+      <div class="detail-label">Categoria técnica</div><p class="detail-text">${escapeHTML(info.categoria)}</p>
+      <div class="detail-label">Principais processos</div><p class="detail-text">${escapeHTML(info.processos)}</p>
+      <div class="detail-label">Aplicação corporativa</div><p class="detail-text">${escapeHTML(info.aplicacao)}</p>
+      <div class="companies">${companies.map(c=>`<span class="tag">${escapeHTML(c)}</span>`).join('')}</div>
+      <a class="source" href="${info.fonte}" target="_blank" rel="noopener">Consultar fonte oficial ↗</a>
+    </article>`
+  }).join('');
+}
+function render(){
+  const rows=filteredData(),total=rows.reduce((a,d)=>a+d.valor,0),companies=aggregate(rows,'empresa'),systems=aggregate(rows,'sistema');
+  document.getElementById('kpiMensal').textContent=BRL.format(total);document.getElementById('kpiAnual').textContent=BRL.format(total*12);
+  document.getElementById('kpiEmpresas').textContent=companies.length;document.getElementById('kpiSistemas').textContent=systems.length;
+  const top=companies[0];document.getElementById('kpiConcentracao').textContent=top?PCT.format(top[1]/total):'—';document.getElementById('kpiConcentracaoSub').textContent=top?top[0]:'Sem dados';
   document.getElementById('countRows').textContent=`${rows.length} registro${rows.length===1?'':'s'}`;
-
-  els.tbody.innerHTML=rows.sort((a,b)=>b.valor-a.valor).map(d=>`
-    <tr><td><strong>${d.empresa}</strong></td><td><span class="pill">${d.sistema}</span></td>
+  els.tbody.innerHTML=[...rows].sort((a,b)=>b.valor-a.valor).map(d=>`<tr>
+    <td><strong>${escapeHTML(d.empresa)}</strong></td><td><span class="pill">${escapeHTML(d.sistema)}</span></td>
+    <td>${escapeHTML(d.segmento)}</td><td>${escapeHTML(d.categoria)}</td><td class="system-purpose">${escapeHTML(d.finalidade)}</td>
     <td>${BRL.format(d.valor)}</td><td>${BRL.format(d.valor*12)}</td></tr>`).join('');
   els.empty.style.display=rows.length?'none':'block';
-
   const topSystem=systems[0];
-  els.insights.innerHTML = total ? `
-    <div class="insight"><b>Maior empresa em custo</b><span>${top[0]} representa ${PCT.format(top[1]/total)} do total filtrado.</span></div>
-    <div class="insight"><b>Sistema com maior impacto</b><span>${topSystem[0]} soma ${BRL.format(topSystem[1])} por mês.</span></div>
-    <div class="insight"><b>Projeção anual</b><span>Mantidos os contratos atuais, o desembolso projetado é de ${BRL.format(total*12)}.</span></div>` : '';
-
-  drawBars(companies); drawDonut(systems);
+  els.insights.innerHTML=total?`<div class="insight"><b>Maior empresa em custo</b><span>${escapeHTML(top[0])} representa ${PCT.format(top[1]/total)} do total filtrado.</span></div>
+  <div class="insight"><b>Sistema com maior impacto</b><span>${escapeHTML(topSystem[0])} soma ${BRL.format(topSystem[1])} por mês.</span></div>
+  <div class="insight"><b>Projeção anual</b><span>Mantidos os contratos atuais, o desembolso projetado é de ${BRL.format(total*12)}.</span></div>`:'';
+  renderSystemCards(rows);drawBars(companies);drawDonut(systems)
 }
-['change','input'].forEach(evt=>{
-  els.empresa.addEventListener(evt,render);els.sistema.addEventListener(evt,render);els.search.addEventListener(evt,render);
-});
-document.getElementById('clearBtn').addEventListener('click',()=>{els.empresa.value='';els.sistema.value='';els.search.value='';render()});
+['change','input'].forEach(evt=>{els.empresa.addEventListener(evt,render);els.sistema.addEventListener(evt,render);els.segmento.addEventListener(evt,render);els.search.addEventListener(evt,render)});
+document.getElementById('clearBtn').addEventListener('click',()=>{els.empresa.value='';els.sistema.value='';els.segmento.value='';els.search.value='';render()});
 document.getElementById('csvBtn').addEventListener('click',()=>{
-  const rows=filteredData();
-  const csv=['Empresa;Sistema;Custo Mensal;Projeção Anual',...rows.map(d=>`${d.empresa};${d.sistema};${d.valor.toFixed(2).replace('.',',')};${(d.valor*12).toFixed(2).replace('.',',')}`)].join('\n');
-  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='custos_sistemas_filtrados.csv';a.click();URL.revokeObjectURL(a.href);
+  const rows=filteredData(),csv=['Empresa;Sistema;Segmento;Categoria;O que faz;Principais processos;Custo Mensal;Projeção Anual',...rows.map(d=>`${d.empresa};${d.sistema};${d.segmento};${d.categoria};${d.finalidade};${d.processos};${d.valor.toFixed(2).replace('.',',')};${(d.valor*12).toFixed(2).replace('.',',')}`)].join('\n');
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='custos_e_especificacoes_sistemas.csv';a.click();URL.revokeObjectURL(a.href)
 });
-let resizeTimer;
-window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(render,120)});
-document.getElementById('updatedAt').textContent='Atualizado em '+new Date().toLocaleDateString('pt-BR');
-render();
+let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(render,120)});
+document.getElementById('updatedAt').textContent='Atualizado em '+new Date().toLocaleDateString('pt-BR');render();
 </script>
 </body>
 </html>
